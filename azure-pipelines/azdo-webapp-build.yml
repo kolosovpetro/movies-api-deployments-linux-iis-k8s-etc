@@ -49,7 +49,7 @@ stages:
             displayName: 'Set Build Version'
             env:
               Action: '##vso[build.updatebuildnumber]'
-              BuildVersion: $(GitVersion.SemVer)
+              BuildVersion: $(version_step.semVer)
 
           - task: UseDotNet@2
             displayName: 'Install .NET 6.x SDK'
@@ -70,7 +70,7 @@ stages:
             inputs:
               command: 'build'
               projects: '$(solution)'
-              arguments: '-p:Version=$(GitVersion.SemVer) --configuration $(buildConfiguration) --no-restore'
+              arguments: '-p:Version=$(version_step.semVer) --configuration $(buildConfiguration) --no-restore'
 
           - task: DotNetCoreCLI@2
             displayName: 'Dotnet Publish'
@@ -78,7 +78,7 @@ stages:
               command: 'publish'
               publishWebProjects: false
               projects: '$(projectPath)'
-              arguments: '-c $(buildConfiguration) -p:Version=$(GitVersion.SemVer) -o $(Build.ArtifactStagingDirectory)/$(buildConfiguration) --no-build'
+              arguments: '-c $(buildConfiguration) -p:Version=$(version_step.semVer) -o $(Build.ArtifactStagingDirectory)/$(buildConfiguration) --no-build'
 
           - task: PublishBuildArtifacts@1
             displayName: 'Publish Artifacts'
