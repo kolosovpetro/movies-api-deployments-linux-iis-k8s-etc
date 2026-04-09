@@ -36,13 +36,14 @@ stages:
           - checkout: self
             fetchDepth: 0
 
-          - task: gitversion/setup@0
-            displayName: 'GitVersion Setup'
+          - task: gitversion-setup@4.5.0
+            displayName: Install GitVersion
             inputs:
-              versionSpec: '5.9.x'
+              versionSpec: '6.x'
 
-          - task: gitversion/execute@0
-            displayName: 'GitVersion Execute'
+          - task: gitversion-execute@4.5.0
+            name: version_step # step id used as a reference for output values
+            displayName: Determine Version
 
           - bash: echo $Action$BuildVersion
             displayName: 'Set Build Version'
