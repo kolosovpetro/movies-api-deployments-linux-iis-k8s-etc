@@ -17,13 +17,11 @@ public static class Program
             .ConfigureLogging(logging =>
             {
                 logging.ClearProviders();
-                logging.AddJsonConsole(options =>
+                logging.AddSimpleConsole(options =>
                 {
-                    options.UseUtcTimestamp = true;
-                    options.JsonWriterOptions = new System.Text.Json.JsonWriterOptions
-                    {
-                        Indented = true // pretty-print JSON
-                    };
+                    options.SingleLine = true; // 👈 important (no multiline JSON-like blocks)
+                    options.TimestampFormat = "yyyy-MM-dd HH:mm:ss ";
+                    options.IncludeScopes = false;
                 });
             })
             .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
