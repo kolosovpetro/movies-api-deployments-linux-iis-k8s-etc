@@ -70,7 +70,7 @@ public class Startup
     {
         app.UseDeveloperExceptionPage();
 
-        app.UseHttpsRedirection();
+        //app.UseHttpsRedirection();
 
         var useSqlServer = GetConfigurationValue<bool>(Configuration, "UseSqlServerDatabase");
 
