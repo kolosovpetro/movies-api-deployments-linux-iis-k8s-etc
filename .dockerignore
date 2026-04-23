@@ -23,3 +23,13 @@
 **/values.dev.yaml
 LICENSE
 README.md
+**/img
+**/.github
+**/scripts
+**/nginx
+**/sql
+**/ubuntu-services
+**/prod-compose
+**/JenkinsFile
+**/*.md
+**/.gitattributes
